@@ -30,7 +30,6 @@
 
 (require 'derived)
 (require 'compile)
-(require 'flymake)
 
 (defgroup scss nil
   "Scss mode"
@@ -103,21 +102,6 @@ Special commands:
   (add-hook 'after-save-hook 'scss-compile-maybe nil t))
 
 (define-key scss-mode-map "\C-c\C-c" 'scss-compile)
-
-(defun flymake-scss-init ()
-  "Flymake support for SCSS files"
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-         (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-    (list scss-sass-command (append scss-sass-options (list "--scss" "--check" local-file)))))
-
-(push '(".+\\.scss$" flymake-scss-init) flymake-allowed-file-name-masks)
-
-;;;; TODO: Not possible to use multiline regexs flymake? flymake-err-[line]-patterns
-;; '("Syntax error:\s*\\(.*\\)\n\s*on line\s*\\([0-9]+\\) of \\([^ ]+\\)$" 3 2 nil 1)
-(push '("on line \\([0-9]+\\) of \\([^ ]+\\)$" 2 1 nil 2) flymake-err-line-patterns)
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))

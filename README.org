@@ -1,3 +1,5 @@
+[FORK] Removed flymake requirement
+
 * SCSS Mode for Emacs
   Major mode for editing [[http://sass-lang.com/][SCSS]] files in Emacs.
   
