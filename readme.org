@@ -1,4 +1,5 @@
 [FORK] Removed flymake requirement
+
 [TODO] Fix and add flymake requirement =) (if i need it)
 
 * SCSS Mode for Emacs
